@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     :root {
       --bg: #4a3b32;
@@ -21,7 +22,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
       padding: 10px;
     }
 
@@ -29,7 +32,8 @@
       background: var(--card);
       border-radius: 14px;
       padding: 14px 16px;
-      width: 250px;
+      width: 100%;          /* S'adapte à la largeur de la colonne */
+      max-width: 320px;
       text-align: center;
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
       border: 1px solid rgba(255,255,255,0.05);
@@ -76,15 +80,13 @@
       justify-content: center;
       align-items: center;
       margin: 6px 0 10px 0;
-      position: relative;
     }
 
     .image-container img {
       max-height: 100%;
       max-width: 100%;
       object-fit: contain;
-      image-rendering: pixelated; /* Conserve le style Pixel Art net */
-      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+      border-radius: 6px;
     }
 
     .controls {
@@ -132,10 +134,7 @@
     <div class="timer" id="timer">25:00</div>
 
     <div class="image-container">
-      <!-- Image Pixel Art de Marie qui dort à son bureau (style Nook Office) -->
-      <img id="marie" src="https://raw.githubusercontent.com/vijiatjack/nookoffice/main/assets/isabelle-sleeping.png" 
-           onerror="this.src='https://acnhapi.com/v1/images/villagers/1'" 
-           alt="Marie qui dort">
+      <img id="marie" src="8f93afcbad4660f890c2444f33708388.gif" alt="Marie qui dort">
     </div>
 
     <div class="controls">
@@ -167,8 +166,7 @@
     }
 
     function startTimer() {
-      if (timerId) return; // Déjà en train de tourner
-      
+      if (timerId) return;
       timerId = setInterval(() => {
         if (timeLeft > 0) {
           timeLeft--;
@@ -193,7 +191,6 @@
       updateDisplay();
     }
 
-    // Initialisation au chargement
     updateDisplay();
   </script>
 </body>
